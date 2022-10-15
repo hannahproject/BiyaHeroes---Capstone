@@ -1,0 +1,111 @@
+body {
+    background-color: var(--bg-clr);
+}
+
+.banner {
+    background-image:linear-gradient(
+        rgba(0, 87, 146, 0.6),
+        rgba(0, 87, 146, 0.6)), url("../images/binan-landscape.jpg");
+    width: 100%;
+    height: 120px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-top: .25em solid var(--tertiary-clr);
+    border-bottom: .25em solid var(--tertiary-clr);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar {
+    margin: 0 1em;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    margin: 2em 0;
+}
+
+
+.grid {
+    width: 75%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1em;
+}
+
+.grid-item {
+    background-color: var(--bg-clr);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border-radius: .5em;
+    box-shadow: 3px 3px 5px #D6D6D1;
+}
+
+.grid-item:hover {
+    box-shadow: 5px 5px 10px #D6D6D1;
+    transition: 0.2s;
+}
+
+footer {
+    background-color: var(--secondary-clr);
+    color: var(--bg-clr);
+}
+
+/*TYPOGRAPHY*/
+
+.navbar-brand {
+    font-family: var(--ff-header);
+    color: var(--secondary-clr);
+    
+}
+
+.navbar-brand > h2 {
+    margin: 0;
+}
+
+.nav-link,
+p {
+    font-family: var(--ff-body);
+}
+
+.nav-link {
+    cursor: pointer;
+}
+
+.banner > h2 {
+    color: var(--bg-clr);
+    font-family: var(--ff-header);
+}
+
+.grid-item > p {
+    color: var(--tertiary-clr);
+}
+
+footer > p {
+    margin: 0;
+    padding: .5em 0;
+    text-align: center;
+}
+
+/*IMAGES*/
+
+.grid-item img {
+    width: 150px;
+}
+
+@media (min-width:320px) and (max-width:992px) {
+    .grid {
+        width: 90%;
+        display: block;
+    }
+
+    .grid-item {
+        margin-bottom: 1em;
+    }
+}

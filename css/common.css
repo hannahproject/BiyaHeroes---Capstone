@@ -1,0 +1,28 @@
+:root {
+    --bg-clr: #FFF;
+    --secondary-clr: #005792;
+    --tertiary-clr: #FD5F00;
+    --bg-clr-two: #F6F6E9;
+    --ff-header: 'Bebas Neue', cursive;
+    --ff-body: 'Montserrat', sans-serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-brand:hover {
+    color:var(--tertiary-clr);
+}
+
+.btn-primary {
+    background-color: var(--tertiary-clr);
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: var(--tertiary-clr);
+    background-image: linear-gradient(rgb(0 0 0/7%) 0 0);
+    transition: 0.3s ease-in;
+}

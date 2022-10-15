@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/profile.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <nav class="navbar navbar-expand-md">
+            <a href="home.html" class="navbar-brand"><h2>BiyaHeroes</h2></a>
+
+            <button 
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#toggleMobileMenu"
+            aria-controls="toggleMobileMenu"
+            aria-expanded="false"
+            aria-label="Toggle Navigation">
+            
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="toggleMobileMenu">
+                <ul class="navbar-nav ms-auto">
+
+                    <li>
+                        <a class="nav-link" href="report-violation.html">Report a Violation</a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link" href="report-missing-item.html">Report Missing Item</a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link" href="violation-list.html">List of Violations</a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link" href="fare-calc.html">Fare Calculator</a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link active" href="#">Profile</a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link logout" href="#">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="banner">
+            <h2>Profile</h2>
+        </div>
+    </header>
+
+    <section class="container">
+
+        <div class="row my-5">
+            <div class="col-md-4 d-flex flex-column align-items-center">
+                <h5>Profile Photo</h5>
+
+                <div id="profile-photo-placement" class="mb-3">
+                </div>
+                <input type="file" name="profile-photo" id="profile-photo">
+                <button class="btn btn-primary"><label for="profile-photo">Upload Photo</label></button>
+            </div>
+
+            <div class="col-md-8">
+                <div class="header">
+                    <h5>Personal Information</h5>
+                    <small>Edit</small>
+                </div>
+                <p>Full Name</p>
+                <p>Address</p>
+                <p>Birthday</p>
+                
+                <div class="header">
+                    <h5>Account Information</h5>
+                    <small>Edit</small>
+                </div>
+                <p>Phone Number</p>
+                <p>Email</p>
+                <p>Password</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Commuters' Reports Management System</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+
+</body>
+</html>

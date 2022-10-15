@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    
+    <div class="box">
+
+        <div class="header">
+            <a href="#"><h1>BiyaHeroes</h1></a>
+            <p>Log into your account.</p>
+        </div>
+
+        <form action="" class="form">
+
+            <div class="form-item">
+                <label for="user-role">User Role
+                    <select name="user-role" id="user-role">
+                        <option value="commuter">Commuter</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </label>                
+            </div>
+
+            <div class="form-item">
+                <label for="email">Email
+                    <input type="email" id="email" placeholder="Email" required>
+                </label>
+                <small></small>
+            </div>
+            <div class="form-item">
+                <label for="password">Password
+                    <input type="password" id="password" placeholder="Password" required>
+                </label>
+                <small></small>
+            </div>
+
+            <div class="btn">
+                <button type="submit">Login</button>
+            </div>
+
+        </form>
+
+        <div class="footer">
+            <p>Don't have an account? <a href="signup.html">Signup</a></p>
+        </div>
+    </div>
+
+</body>
+</html>
