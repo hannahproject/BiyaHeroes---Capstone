@@ -1,15 +1,25 @@
+//LOGIN INPUTS
 const form = document.getElementById('form');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 
+//SIGNUP INPUTS
+const firstName = document.getElementById('first-name');
+const lastName = document.getElementById('last-name');
+const birthday = document.getElementById('birthday');
+const address = document.getElementById('address');
+const phoneNum = document.getElementById('phone-num');
+const confirmPass = document.getElementById('confirm-pass');
+
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    loginValidation();
+    Validation();
 });
 
-function loginValidation() {
+function Validation() {
 
+    //login validation
     const emailVal = email.value.trim();
     const passVal = password.value.trim();
 
@@ -27,6 +37,52 @@ function loginValidation() {
         errorMsg(password, 'This field cannot be blank.');
     } else {
         successMsg(password);
+    }
+
+    //sign-up validation
+    const fnameVal = firstName.value.trim();
+    const lnameVal = lastName.value.trim();
+    const birthdayVal = birthday.value.trim();
+    const addressVal = address.value.trim();
+    const phoneNumVal =phoneNum.value.trim();
+    const confirmPassVal =confirmPass.value.trim();
+
+    if(fnameVal === ''){
+        errorMsg(firstName, 'This field cannot be blank.');
+    } else {
+        successMsg(firstName);
+    }
+
+    if(lnameVal === ''){
+        errorMsg(lastName, 'This field cannot be blank.');
+    } else {
+        successMsg(lastName);
+    }
+
+    if(birthdayVal === ''){
+        errorMsg(birthday, 'This field cannot be blank.');
+    } else {
+        successMsg(birthday);
+    }
+
+    if(addressVal === ''){
+        errorMsg(address, 'This field cannot be blank.');
+    } else {
+        successMsg(address);
+    }
+
+    if(phoneNumVal === ''){
+        errorMsg(phoneNum, 'This field cannot be blank.');
+    } else {
+        successMsg(phoneNum);
+    }
+
+    if(confirmPassVal === ''){
+        errorMsg(confirmPass, 'This field cannot be blank.');
+    } else if(confirmPassVal !== passVal){
+        errorMsg(confirmPass, 'Your passwords do not match.');
+    } else {
+        successMsg(confirmPass);
     }
 }
 
