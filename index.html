@@ -21,7 +21,7 @@
             <p>Log into your account.</p>
         </div>
 
-        <form action="" class="form">
+        <form action="" class="form" id="form">
 
             <div class="form-item">
                 <label for="user-role">User Role
@@ -33,16 +33,15 @@
             </div>
 
             <div class="form-item">
-                <label for="email">Email
-                    <input type="email" id="email" placeholder="Email" required>
-                </label>
-                <small></small>
+                <label for="email">Email</label>
+                    <input type="text" id="email" placeholder="Email">
+                    <small>Error Message</small>
             </div>
+
             <div class="form-item">
-                <label for="password">Password
-                    <input type="password" id="password" placeholder="Password" required>
-                </label>
-                <small></small>
+                <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Password">
+                    <small>Error Message</small>
             </div>
 
             <div class="btn">
@@ -56,5 +55,6 @@
         </div>
     </div>
 
+    <script src="js/users.js"></script>
 </body>
 </html>
