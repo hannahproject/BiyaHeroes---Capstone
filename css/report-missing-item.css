@@ -38,6 +38,28 @@ footer {
     color: var(--bg-clr);
 }
 
+/*FORM ITEMS*/
+.form-item .form-text {
+    font-family: var(--ff-body);
+    font-style: italic;
+    position: absolute;
+    padding-top: 5px;
+    visibility: hidden;
+}
+
+.form-item.success input{
+    border-color: #2ecc71;
+}
+
+.form-item.error input{
+    border-color: #e74c3c;
+}
+
+.form-item.error .form-text{
+    color: #e74c3c;
+    visibility: visible;
+}
+
 /*TYPOGRAPHY*/
 
 .navbar-brand {
