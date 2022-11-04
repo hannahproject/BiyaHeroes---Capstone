@@ -54,6 +54,29 @@ footer {
     display: none;
 }
 
+/*PROFILE INFORMATION*/
+    .form-control {
+        border: none;
+        padding-left: 0;
+        font-family: var(--ff-body);
+    }
+
+    .form-control:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    input[type=number] {
+        appearance: textfield;
+    }
+
+    .form-text {
+        visibility: hidden;
+    }
+
+    #save, #cancel {
+        visibility: hidden;
+    }
 
 /*TYPOGRAPHY*/
 
