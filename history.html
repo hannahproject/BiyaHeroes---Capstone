@@ -70,6 +70,12 @@
     </header>
 
     <section class="container">
+
+    <div class="search">
+        <input type="text" class="form-control w-25" placeholder="Search">
+        <img src="images/search.svg">
+    </div>
+          
         <table class="table table-hover text-center">
             <thead>
                 <tr>
@@ -85,14 +91,25 @@
 
             <tbody>
                 <tr>
-                    <th scope="row">000</th>
-                    <td>Violation</td>
-                    <td>0505</td>
-                    <td>Juan Dela Cruz</td>
-                    <td>Dela Paz Toda</td>
-                    <td>Jan 01 2022</td>
-                    <td>Pending</td>
+                    <th scope="row" data-label="Report ID">000</th>
+                    <td data-label="Type of Report">Violation</td>
+                    <td data-label="Body No.">0505</td>
+                    <td data-label="Driver's Name">Juan Dela Cruz</td>
+                    <td data-label="TODA">Dela Paz Toda</td>
+                    <td data-label="Date">Jan 01 2022</td>
+                    <td data-label="Status">Pending</td>
                 </tr>
+
+                <tr>
+                    <th scope="row" data-label="Report ID">001</th>
+                    <td data-label="Type of Report">Missing Item</td>
+                    <td data-label="Body No.">1234</td>
+                    <td data-label="Driver's Name">Franz Maaba</td>
+                    <td data-label="TODA">Jubilation Toda</td>
+                    <td data-label="Date">Jan 05 2022</td>
+                    <td data-label="Status">Resolved</td>
+                </tr>
+
             </tbody>
         </table>
     </section>
