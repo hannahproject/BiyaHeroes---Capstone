@@ -73,6 +73,8 @@ function Validation() {
 
     if(phoneNumVal === ''){
         errorMsg(phoneNum, 'This field cannot be blank.');
+    } else if(!isPhoneNum(phoneNumVal)) {
+        errorMsg(phoneNum, 'Enter a valid phone number.');
     } else {
         successMsg(phoneNum);
     }
@@ -103,4 +105,9 @@ function successMsg(input) {
 //validates if the input is a valid email
 function isEmail(email) {
 	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+}
+
+//validates if the input is a valid PH phone number
+function isPhoneNum(phoneNum) {
+    return /((^(\+)(\d){12}$)|(^\d{11}$))/.test(phoneNum);
 }
