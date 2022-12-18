@@ -3,6 +3,10 @@ const btns = document.getElementsByClassName('geo-btn');
 const pickupbtn = document.querySelector('#pick-up-btn');
 const dropoffbtn = document.querySelector('#drop-off-btn');
 
+const distance = document.querySelector('#display-distance');
+const KM = document.querySelector('#km');
+const calculate = document.querySelector('#calculate');
+
 var CURRENT_LOC = null;
 
 const defaultLoc = {
@@ -112,12 +116,19 @@ function getLocs(map, geocoder, directionsService) {
         var request = {
             origin: A,
             destination: B,
-            travelMode: 'DRIVING'
+            travelMode: 'DRIVING',
+            unitSystem: google.maps.UnitSystem.METRIC
         };
 
         directionsService.route(request, (result, status) => {
             if(status == 'OK') {
                 render.setDirections(result);
+
+                const COMPUTED_DISTANCE = result.routes[0].legs[0].distance.text;
+                distance.innerHTML = COMPUTED_DISTANCE;
+                KM.value = COMPUTED_DISTANCE;
+
+                calculateFare(COMPUTED_DISTANCE);
             }
         });
     }
@@ -143,6 +154,34 @@ function getLocs(map, geocoder, directionsService) {
     } else {
         alert("Not Supported");
     }
+}
+
+function calculateFare(COMPUTED_DISTANCE) {
+    //REMOVES THE KM SIGN AT THE END OF THE COMPUTED_DISTANCE
+    var NEW_COMPUTED_DISTANCE = COMPUTED_DISTANCE.slice(0, -2);
+    var METER = 1000;
+    const display_fare = document.querySelector('#fare');
+
+    //CONVERTS DISTANCE TO METERS
+    var CONVERTED_DIST = NEW_COMPUTED_DISTANCE * METER; 
+
+    var FARE = null;
+    const FIRST_MTR = 0.015;
+    const SUCCEEDING_MTRS = 0.002;
+    const BASE_FARE = 15;
+
+    calculate.addEventListener('click', function() {
+
+        if(CONVERTED_DIST <= 1000) {
+            display_fare.innerHTML = BASE_FARE;
+        } else {
+            var EXCESS = CONVERTED_DIST - METER;
+            FARE = (EXCESS * SUCCEEDING_MTRS) + BASE_FARE;
+
+            display_fare.innerHTML = Math.ceil(FARE);
+        }
+
+    });
 }
 
 
