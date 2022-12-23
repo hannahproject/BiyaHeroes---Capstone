@@ -92,7 +92,7 @@ function cancelEdit() {
         alert("The file is too big! Limit it to 5MB.");
       } else if(!allowedExtensions.exec(filePath)){
           alert('Invalid file type');
-          fileInput.value = '';
+          filePath.value = '';
           return false;
       }else {
         const reader = new FileReader();
