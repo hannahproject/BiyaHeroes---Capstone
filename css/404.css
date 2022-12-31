@@ -1,0 +1,21 @@
+body {
+    text-align: center;
+}
+
+.container {
+    margin-top: 2em;
+}
+
+img {
+    width: 45%;
+}
+
+h1 {
+    padding: 1.5em 0 1em 0;
+    font-family: var(--ff-body);
+    color: var(--secondary-clr);
+}
+
+button {
+    width: 100%;
+}
