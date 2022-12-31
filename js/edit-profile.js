@@ -1,10 +1,9 @@
-const edit = document.getElementById('edit')
+const edit = document.getElementById('edit');
 const save = document.getElementById('save');
 const cancel = document.getElementById('cancel');
 const inputs = document.getElementsByClassName('form-control');
 
-const img = document.querySelector('#profile-photo-placement');
-const file = document.querySelector('#profile-photo');
+const profile = document.getElementById('profile');
 
 const fullName = document.getElementById('full-name');
 const address = document.getElementById('address');
@@ -20,14 +19,46 @@ const defaultPhoneNum = phoneNum.value = "0912345";
 const defaultEmail = email.value = "andy@yopmail.com";
 const defaultPassword = password.value = "root";
 
+
+//FILEPOND SETUP
+FilePond.registerPlugin(
+  FilePondPluginImagePreview,
+  FilePondPluginImageCrop,
+  FilePondPluginImageResize,
+  FilePondPluginFileEncode
+);
+
+const pond = FilePond.create(profile);
+
+pond.setOptions({
+  imageCropAspectRatio: '1:1',
+  imageResizeTargetWidth: 180,
+  imageResizeTargetHeight: 180,
+  stylePanelLayout: 'compact circle',
+  styleLoadIndicatorPosition: 'center',
+  styleProgressIndicatorPosition: 'center',
+  styleButtonRemoveItemPosition: 'center',
+  styleButtonProcessItemPosition: 'center',
+  allowBrowse: false,
+  allowDrop: false,
+});
+
+
 edit.addEventListener('click', toEdit);
 cancel.addEventListener('click', cancelEdit);
 save.addEventListener('click', saveEdit);
 
 function toEdit() {
+
     save.style.visibility = "visible";
     cancel.style.visibility = "visible";
     edit.style.visibility = "hidden";
+
+    //allows user to attach images
+    if(pond.allowBrowse == false && pond.allowDrop == false) {
+      pond.allowBrowse = true;
+      pond.allowDrop = true;
+    }
 
 	for(const input of inputs) {
         input.readOnly = false;
@@ -43,6 +74,9 @@ function cancelEdit() {
       email.value = defaultEmail;
       password.value = defaultPassword;
 
+      //removes the image on the placeholder when the user clicks cancel
+      pond.removeFile();
+
         edit.style.visibility = "visible";
         save.style.visibility = "hidden";
         cancel.style.visibility = "hidden";
@@ -56,6 +90,7 @@ function cancelEdit() {
         if(fullName.value==='' || address.value==='' || birthday.value==='' || email.value==='' || phoneNum.value==='' || password.value==='') {
           console.log("Empty field");
       } else {
+
           const newFullName = document.getElementById('full-name').value;
           const newAddress = document.getElementById('address').value;
           const newBirthday = document.getElementById('birthday').value;
@@ -73,34 +108,16 @@ function cancelEdit() {
         edit.style.visibility = "visible";
         save.style.visibility = "hidden";
         cancel.style.visibility = "hidden";
+
+        //prevents user from changing their profile via file browsing/dropping AFTER clicking save
+        //sets allowBrowse and allowDrop on their default states (false)
+        if(pond.allowBrowse == true && pond.allowDrop == true) {
+          pond.allowBrowse = false;
+          pond.allowDrop = false;
+        }
     
         for(const input of inputs) {
           input.readOnly = true;
         }
       }
     }
-
-    //validates whether the extension of the file is valid or not
-    var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
-    var filePath = file.value;  
-
-    file.addEventListener('change', function(){
-      const newFile = this.files[0];
-
-      //limits the file size to 5MB
-      if(newFile.size > 5242880) {
-        alert("The file is too big! Limit it to 5MB.");
-      } else if(!allowedExtensions.exec(filePath)){
-          alert('Invalid file type');
-          filePath.value = '';
-          return false;
-      }else {
-        const reader = new FileReader();
-
-        reader.addEventListener('load', function() {
-          img.setAttribute('src', reader.result);
-        });
-
-        reader.readAsDataURL(newFile);
-      }
-    });

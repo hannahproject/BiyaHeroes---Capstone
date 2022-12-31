@@ -41,17 +41,20 @@ footer {
 
 /*PROFILE*/
 
-#profile-photo-placement {
-    border-radius: 50%;
-    border: 1px solid grey;
-    width:130px;
-    height:130px;
-    background-color: grey;
-    overflow: hidden;
+.filepond--root {
+    width: 180px;
+    height: 180px;
 }
 
-#profile-photo {
-    display: none;
+/* hides fileponds default labels */
+.filepond--drop-label.filepond--drop-label label {
+    visibility: hidden;
+}
+
+/* FILEPOND CREDITS */
+/* REMINDER TO INCLUDE A CREDITS TO FILEPOND SOMEWHERE ON THE WEBSITE */
+.filepond--credits {
+    visibility: hidden;
 }
 
 /*PROFILE INFORMATION*/
@@ -110,11 +113,11 @@ h5 {
     margin: 0;
 }
 
-.header > small {
+small {
     cursor: pointer;
 }
 
-.header > small:hover {
+small:hover {
     color: var(--tertiary-clr);
     transition: 0.2s;
 }
