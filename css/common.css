@@ -16,6 +16,37 @@
     color:var(--tertiary-clr);
 }
 
+.navbar .history ul {
+    list-style: none;
+}
+
+.navbar .history ul a {
+    color: #000;
+    text-decoration: none;
+}
+
+.navbar .history ul a:hover {
+    color: var(--secondary-clr);
+}
+
+.navbar {
+    position: relative;
+}
+
+.navbar ul ul {
+    position: absolute;
+    top: 3em;
+    display: none;
+    background-color: #FFF;
+    line-height: 3em;
+    padding: 1em;
+}
+
+.navbar ul .history:focus-within > ul,
+.navbar ul .history:hover > ul {
+    display: block;
+}
+
 .btn-primary {
     background-color: var(--tertiary-clr);
     border: none;
@@ -25,4 +56,12 @@
     background-color: var(--tertiary-clr);
     background-image: linear-gradient(rgb(0 0 0/7%) 0 0);
     transition: 0.3s ease-in;
+}
+
+@media (min-width:300px) and (max-width:992px) {
+    .navbar ul .history ul{
+        position: relative;
+        top: 0;
+        padding: 0;
+    }
 }
