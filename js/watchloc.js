@@ -6,6 +6,7 @@ const dropoffbtn = document.querySelector('#drop-off-btn');
 const distance = document.querySelector('#display-distance');
 const KM = document.querySelector('#km');
 const calculate = document.querySelector('#calculate');
+const discount = document.querySelector('#discount');
 
 var CURRENT_LOC = null;
 
@@ -166,9 +167,11 @@ function calculateFare(COMPUTED_DISTANCE) {
     var CONVERTED_DIST = NEW_COMPUTED_DISTANCE * METER; 
 
     var FARE = null;
+    var DISCOUNTED_FARE = null;
     const FIRST_MTR = 0.015;
     const SUCCEEDING_MTRS = 0.002;
     const BASE_FARE = 15;
+    const DISCOUNT_RATE = 0.2;
 
     calculate.addEventListener('click', function() {
 
@@ -177,8 +180,11 @@ function calculateFare(COMPUTED_DISTANCE) {
         } else {
             var EXCESS = CONVERTED_DIST - METER;
             FARE = (EXCESS * SUCCEEDING_MTRS) + BASE_FARE;
+            var off = FARE * DISCOUNT_RATE;
+            DISCOUNTED_FARE = FARE - off;
 
             display_fare.innerHTML = Math.ceil(FARE);
+            discount.innerHTML = Math.ceil(DISCOUNTED_FARE);
         }
 
     });
