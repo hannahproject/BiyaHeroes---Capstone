@@ -14,7 +14,7 @@ const password = document.getElementById('password');
 
 const defaultFullName = fullName.value = "Hannah Liwanag";
 const defaultAddress = address.value = "De La Paz, Binan Laguna";
-const defaultBirthday = birthday.value = "2001-03-30";
+const defaultBirthday = birthday.value = "03/03/2001";
 const defaultPhoneNum = phoneNum.value = "0912345";
 const defaultEmail = email.value = "andy@yopmail.com";
 const defaultPassword = password.value = "root";
@@ -54,6 +54,9 @@ function toEdit() {
     cancel.style.visibility = "visible";
     edit.style.visibility = "hidden";
 
+    birthday.type = "date";
+    birthday.value = defaultBirthday;
+
     //allows user to attach images
     if(pond.allowBrowse == false && pond.allowDrop == false) {
       pond.allowBrowse = true;
@@ -68,6 +71,7 @@ function toEdit() {
 function cancelEdit() {
     //returns the default name
       fullName.value = defaultFullName;
+      birthday.type = "text";
       birthday.value = defaultBirthday;
       address.value = defaultAddress;
       phoneNum.value = defaultPhoneNum;
