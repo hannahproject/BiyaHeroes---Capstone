@@ -4,7 +4,7 @@ const btn2 = document.getElementById('drop-off-btn');
 const pickup = document.getElementById('pick-up');
 const dropoff = document.getElementById('drop-off');
 const start = document.getElementById('start');
-const stop = document.getElementById('stop');
+const _stop = document.getElementById('stop');
 const lat = document.getElementById('lat');
 
 const distance = document.getElementById('distance');
@@ -95,6 +95,8 @@ function GetCoords() {
     polyline = L.polyline(unique, {color: 'red'}).addTo(group);
     map.addLayer(polyline);
     map.fitBounds(polyline.getBounds());
+
+    DisplayRoute();
 }
 
 var locations = {};
@@ -104,6 +106,9 @@ function PositionA() {
     
     locations['FROM_LatLng'] = FROM;
     ReverseGeocodeFrom();
+
+    lat.value = `${FROM.latitude},${FROM.longitude}`;
+    var value = lat.value;
 }
 
 function PositionB() {
@@ -162,57 +167,59 @@ function ReverseGeocodeTo() {
 
 function DisplayRoute() {
 
-    route = L.Routing.control({
-        waypoints: unique,
-        show: false,
-        draggableWaypoints: false,
-        waypointMode: 'snap'
-      }).addTo(map);
+    // route = L.Routing.control({
+    //     waypoints: unique,
+    //     show: false,
+    //     draggableWaypoints: false,
+    //     waypointMode: 'snap'
+    //   }).addTo(map);
 
-    //GETS DISTANCE IN METERS
-    // const dist = geolib.getPreciseDistance(
-    //     {
-    //         latitude: locations.FROM_LatLng.latitude, 
-    //         longitude: locations.FROM_LatLng.longitude
-    //     },
-    //     {
-    //         latitude: locations.TO_LatLng.latitude, 
-    //         longitude: locations.TO_LatLng.longitude
-    //     }
-    // );
+    // GETS DISTANCE IN METERS
 
-    // console.log(dist);
+    if('FROM_LatLng' in locations) {
 
-    //CONVERTS TO KM
-    // const KM = geolib.convertDistance(dist, 'km'); 
+        const dist = geolib.getPreciseDistance(
+            {
+                latitude: locations.FROM_LatLng.latitude, 
+                longitude: locations.FROM_LatLng.longitude
+            },
+            {
+                latitude: lastChild[0][0], 
+                longitude: lastChild[0][1]
+            }
+        );
 
-    // distance.innerHTML = KM;
+        const KM = geolib.convertDistance(dist, 'km'); 
+        distance.innerHTML = KM;
 
-    // const SUCCEEDING_MTRS = 0.002;
-    // const BASE_FARE = 15;
-    // const DISCOUNT_RATE = 0.2;
-    // var _FARE = null;
-    // var DISCOUNTED_FARE = null;
-
-    // if(dist <= 1100) {
-    //     fare.innerHTML = BASE_FARE;
-    //     var off = BASE_FARE * DISCOUNT_RATE;
-    //     DISCOUNTED_FARE = BASE_FARE - off;
-
-    //     discount.innerHTML = Math.ceil(DISCOUNTED_FARE);
-    // } else {
-
-    //     var METER = 1000;
-
-    //     var EXCESS = dist - METER;
-    //     _FARE = (EXCESS * SUCCEEDING_MTRS) + BASE_FARE;
-
-    //     var off = _FARE * DISCOUNT_RATE;
-    //     DISCOUNTED_FARE = _FARE - off;
-
-    //     fare.innerHTML = Math.ceil(_FARE);
-    //     discount.innerHTML = Math.ceil(DISCOUNTED_FARE);
-    // }
+        const SUCCEEDING_MTRS = 0.002;
+        const BASE_FARE = 15;
+        const DISCOUNT_RATE = 0.2;
+        var _FARE = null;
+        var DISCOUNTED_FARE = null;
+    
+        if(dist <= 1100) {
+            fare.innerHTML = BASE_FARE;
+            var off = BASE_FARE * DISCOUNT_RATE;
+            DISCOUNTED_FARE = BASE_FARE - off;
+    
+            discount.innerHTML = Math.ceil(DISCOUNTED_FARE);
+        } else {
+    
+            var METER = 1000;
+    
+            var EXCESS = dist - METER;
+            _FARE = (EXCESS * SUCCEEDING_MTRS) + BASE_FARE;
+    
+            var off = _FARE * DISCOUNT_RATE;
+            DISCOUNTED_FARE = _FARE - off;
+    
+            fare.innerHTML = Math.ceil(_FARE);
+            discount.innerHTML = Math.ceil(DISCOUNTED_FARE);
+        }
+    } else {
+        console.log('Waiting for Position A to be set');
+    }
 }
 
 function Clear() {
@@ -231,4 +238,4 @@ function Clear() {
 
 btn1.addEventListener('click', PositionA);
 btn2.addEventListener('click', PositionB);
-stop.addEventListener('click', Clear);
+_stop.addEventListener('click', Clear);
