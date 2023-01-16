@@ -30,7 +30,6 @@ body {
 #map {
     width: 100%;
     height: 100%;
-    background-color: gray;
 }
 
 .fare-matrix {
@@ -40,11 +39,52 @@ body {
 footer {
     background-color: var(--secondary-clr);
     color: var(--bg-clr);
+    width: 100%;
+    bottom: 0;
 }
 
 .btn {
     width: 100%;
 }
+
+.btn-outline-primary {
+    color:var(--tertiary-clr);
+    border-color:var(--tertiary-clr);
+}
+
+.btn:disabled {
+    color:var(--tertiary-clr);
+    border-color: var(--tertiary-clr);
+}
+
+.btn-outline-primary:hover {
+    background-color:var(--tertiary-clr);
+    border-color:var(--tertiary-clr);
+}
+
+.inline-btns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.inline-btns .btn{
+    width: 100%;
+}
+
+button.btn.btn-outline-secondary {
+    opacity: .7;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-color: var(--secondary-clr);
+    color: var(--secondary-clr);
+}
+
+button.btn.btn-outline-secondary:hover {
+    background-color: var(--secondary-clr);
+    color: #FFFFFF;
+}
+
+
 
 /*TYPOGRAPHY*/
 
@@ -72,6 +112,22 @@ h5 {
 
 .box p > span {
     font-weight: 500;
+}
+
+.box small {
+    font-family: var(--ff-body);
+}
+
+.box .on{
+    color: #2ecc71;
+}
+
+.box .off {
+    color: #e74c3c;
+}
+
+.box .default {
+    color: #000000;
 }
 
 .navbar-brand > h2 {

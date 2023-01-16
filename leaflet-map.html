@@ -95,7 +95,7 @@
                     <!--PICK-UP POINT FIELD-->
                     <div class="input-group mb-3">
                         <input type="text" id="pick-up" class="form-control" placeholder="Pick-up" aria-label="Pick-up" aria-describedby="basic-addon2">
-                        <input type="hidden" value="" id="lat">
+
                         <div class="input-group-append">
                           <button class="geo-btn btn btn-outline-secondary" id="pick-up-btn" type="button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-fill" viewBox="0 0 16 16">
@@ -108,7 +108,7 @@
                     <!--DROP-OFF POINT FIELD-->
                     <div class="input-group mb-3">
                         <input type="text" id="drop-off" class="form-control" placeholder="Drop-off" aria-label="Drop-off" aria-describedby="basic-addon2">
-                        <input type="hidden" id="latlng-dropoff" value="">
+
                         <div class="input-group-append">
                           <button class="geo-btn btn btn-outline-secondary" id="drop-off-btn" type="button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-fill" viewBox="0 0 16 16">
@@ -120,22 +120,20 @@
 
                     <!--CLEAR AND STOP BUTTONS-->
                     <div class="input-loc mb-3 inline-btns">
-                        <!-- <input id="to_places" type="text" class="form-control">
-                        <input type="hidden" id="destination" name="destination" required> -->
-                        <!-- <small class="form-text">Error Message</small>                     -->
-                        <button class="btn btn-outline-primary" type="button" id="start">Start</button>
                         <button class="btn btn-outline-primary" type="reset" id="stop">Stop</button>
                     </div>
                 </form>
 
                 <div class="box">
-                    <p> <span>Base Fare (First 1 METER or less): </span>15.00</p>
-                    <div class="fare-matrix">
+
+                    <em><small class="small" id="message">Turn on your Geolocator to monitor your distance and fare.</small></em>
+                        
+                    <div class="fare-matrix mt-5">
                         <h1>P<span id="fare">0</span> / <span id="distance">0</span> km</h1>
                         <p> <span id="discount">0</span> Pesos (20% discount)</p>
-
                     </div>
                 </div>
+
             </div>
         </div>
     </section>

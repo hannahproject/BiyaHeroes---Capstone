@@ -5,7 +5,7 @@ const pickup = document.getElementById('pick-up');
 const dropoff = document.getElementById('drop-off');
 const start = document.getElementById('start');
 const _stop = document.getElementById('stop');
-const lat = document.getElementById('lat');
+const msg = document.getElementById('message');
 
 const distance = document.getElementById('distance');
 const fare = document.getElementById('fare');
@@ -62,17 +62,19 @@ function onSuccess(pos) {
     if(ARR_CURRENT_LOCS.length > 0) {
         GetCoords();
     }
+
+    var message = 'Your location is currently being observed.';
+    PositionA();
+    SuccessMessage(message);
 }
 
 function onError(err) {
-    console.log(err.message);
+    var message = err.message;
+    ErrorMessage(message);
 }
-
-start.addEventListener('click', Geolocate);
 
 var lastChild = null;
 var firstChild = null;
-var latLngArr = [];
 
 function GetCoords() {
 
@@ -102,13 +104,10 @@ function GetCoords() {
 var locations = {};
 
 function PositionA() {
-    FROM = CURRENT_LOCATION;
+    FROM = firstChild;
     
     locations['FROM_LatLng'] = FROM;
     ReverseGeocodeFrom();
-
-    lat.value = `${FROM.latitude},${FROM.longitude}`;
-    var value = lat.value;
 }
 
 function PositionB() {
@@ -116,6 +115,9 @@ function PositionB() {
 
     locations['TO_LatLng'] = TO;
     ReverseGeocodeTo();
+
+    var message = 'Press Stop button to turn off Geolocation.';
+    SuccessMessage(message);
 }
 
 function ReverseGeocodeFrom() {
@@ -123,10 +125,10 @@ function ReverseGeocodeFrom() {
     if('FROM_LatLng' in locations) {
         
         //ADD MARKER A TO MAP
-        var MARKER_A = L.marker([locations.FROM_LatLng.latitude, locations.FROM_LatLng.longitude]).addTo(group);
+        var MARKER_A = L.marker([locations.FROM_LatLng[0], locations.FROM_LatLng[1]]).addTo(group);
         map.addLayer(MARKER_A);
 
-        var reverse = `https://api.geoapify.com/v1/geocode/reverse?lat=${locations.FROM_LatLng.latitude}&lon=${locations.FROM_LatLng.longitude}&apiKey=${geoapify}`;
+        var reverse = `https://api.geoapify.com/v1/geocode/reverse?lat=${locations.FROM_LatLng[0]}&lon=${locations.FROM_LatLng[1]}&apiKey=${geoapify}`;
 
         fetch(reverse).then(result => result.json())
         .then(featureCollection => {
@@ -165,23 +167,20 @@ function ReverseGeocodeTo() {
     }
 }
 
+var dist = null;
+var KM = null;
+var roundKM = null;
+var _FARE = null;
+var DISCOUNTED_FARE = null;
+
 function DisplayRoute() {
-
-    // route = L.Routing.control({
-    //     waypoints: unique,
-    //     show: false,
-    //     draggableWaypoints: false,
-    //     waypointMode: 'snap'
-    //   }).addTo(map);
-
-    // GETS DISTANCE IN METERS
 
     if('FROM_LatLng' in locations) {
 
         const dist = geolib.getPreciseDistance(
             {
-                latitude: locations.FROM_LatLng.latitude, 
-                longitude: locations.FROM_LatLng.longitude
+                latitude: locations.FROM_LatLng[0], 
+                longitude: locations.FROM_LatLng[1]
             },
             {
                 latitude: lastChild[0][0], 
@@ -189,16 +188,17 @@ function DisplayRoute() {
             }
         );
 
-        const KM = geolib.convertDistance(dist, 'km'); 
-        distance.innerHTML = KM;
+        KM = geolib.convertDistance(dist, 'km'); 
+        roundKM = Math.round(KM * 100) / 100;
+        distance.innerHTML = roundKM;
 
         const SUCCEEDING_MTRS = 0.002;
         const BASE_FARE = 15;
         const DISCOUNT_RATE = 0.2;
-        var _FARE = null;
-        var DISCOUNTED_FARE = null;
+        _FARE = null;
+        DISCOUNTED_FARE = null;
     
-        if(dist <= 1100) {
+        if(dist <= 1050) {
             fare.innerHTML = BASE_FARE;
             var off = BASE_FARE * DISCOUNT_RATE;
             DISCOUNTED_FARE = BASE_FARE - off;
@@ -234,8 +234,36 @@ function Clear() {
     CURRENT_LOCATION = null;
     unique = [];
     ARR_CURRENT_LOCS = [];
+
+    dist = null;
+    KM = null;
+    roundKM = null;
+    _FARE = null;
+    DISCOUNTED_FARE = null;
+
+    distance.innerHTML = 0;
+    fare.innerHTML = 0;
+    discount.innerHTML = 0;
+
+    var message = 'Turn on your Geolocator to monitor your distance and fare.';
+    DefaultMessage(message);
 }
 
-btn1.addEventListener('click', PositionA);
+function SuccessMessage(message) {
+    msg.className = 'on';
+    msg.innerHTML = message;
+}
+
+function ErrorMessage(message) {
+    msg.className = 'off';
+    msg.innerHTML = message;
+}
+
+function DefaultMessage(message) {
+    msg.className = 'default';
+    msg.innerHTML = message;
+}
+
+btn1.addEventListener('click', Geolocate);
 btn2.addEventListener('click', PositionB);
 _stop.addEventListener('click', Clear);
