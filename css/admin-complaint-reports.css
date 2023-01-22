@@ -1,0 +1,166 @@
+body {
+    background-color: var(--bg-clr);
+}
+
+.banner {
+    background-image:linear-gradient(
+        rgba(0, 87, 146, 0.6),
+        rgba(0, 87, 146, 0.6)), url("../images/binan-landscape.jpg");
+    width: 100%;
+    height: 120px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-top: .25em solid var(--tertiary-clr);
+    border-bottom: .25em solid var(--tertiary-clr);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar {
+    margin: 0 1em;
+}
+
+.container {
+    height: 100vh;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+footer {
+    background-color: var(--secondary-clr);
+    color: var(--bg-clr);
+}
+
+.sort-search, 
+select > option {
+    font-family: var(--ff-body);
+}
+
+.sort-search {
+    margin-bottom: 1.5em;
+}
+
+.sort-search > label {
+    margin-right: .5em;
+}
+
+#show {
+    margin-right:1em;
+    border: none;
+    background-color: inherit;
+    padding: .5em;
+}
+
+#search {
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+#search:focus {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.7);
+}
+
+.table-btn {
+    cursor: pointer;
+    width: 20px;
+    filter: invert(37%) sepia(9%) saturate(10%) hue-rotate(51deg) brightness(95%) contrast(87%);
+    opacity: 0.6;
+}
+
+.view-btn:hover {
+    filter: invert(39%) sepia(99%) saturate(2327%) hue-rotate(2deg) brightness(101%) contrast(106%);
+    opacity: 1; 
+}
+
+/**TYPOGRAPHY**/
+
+footer > p {
+    margin: 0;
+    padding: .5em 0;
+    text-align: center;
+}
+
+.navbar-brand {
+    font-family: var(--ff-header);
+    color: var(--secondary-clr);
+    
+}
+
+.banner > h2 {
+    font-family: var(--ff-header);
+    color: var(--bg-clr);
+}
+
+.navbar-brand > h2 {
+    margin: 0;
+}
+
+.nav-link,
+h5,
+.btn,
+p {
+    font-family: var(--ff-body);
+}
+
+h5 {
+    color: var(--secondary-clr);
+}
+
+/* TABLE */
+thead {
+    background-color: var(--tertiary-clr);
+    color: #FFFFFF;
+}
+
+@media (min-width:320px) and (max-width:992px) {
+
+    /* h5 {
+        text-align: center;
+        font-size: 18px;
+        margin-bottom: .5em;
+    } */
+
+    .sort-search {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .sort-search > label {
+        display: none;
+    }
+
+    .table thead {
+        display: none;
+    }
+
+    .table, .table th, .table tbody, .table tr, .table td{
+        display: block;
+        width: 100%;
+    }
+
+    .table tr {
+        margin-bottom: 1em;
+    }
+
+    .table td, .table th {
+        text-align: right;
+        padding-left: 50%;
+        text-align: right;
+        position: relative;
+    }
+
+    .table td::before,
+    .table th::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 1em;
+        font-size: 1rem;
+        text-align: left;
+    }
+}

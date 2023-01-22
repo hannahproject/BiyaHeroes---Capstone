@@ -58,6 +58,21 @@
     transition: 0.3s ease-in;
 }
 
+.add-btn {
+    border-color: var(--tertiary-clr);
+    color: var(--tertiary-clr);
+}
+
+.add-btn:hover {
+    background-color: var(--tertiary-clr);
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+}
+
+table {
+    font-family: var(--ff-body);
+}
+
 @media (min-width:300px) and (max-width:992px) {
     .navbar ul .history ul{
         position: relative;
