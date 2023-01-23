@@ -1,0 +1,122 @@
+body {
+    background-color: var(--bg-clr);
+}
+
+.banner {
+    background-image:linear-gradient(
+        rgba(0, 87, 146, 0.6),
+        rgba(0, 87, 146, 0.6)), url("../images/binan-landscape.jpg");
+    width: 100%;
+    height: 120px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-top: .25em solid var(--tertiary-clr);
+    border-bottom: .25em solid var(--tertiary-clr);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar {
+    margin: 0 1em;
+}
+
+.important-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.details {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0, 87, 146, 0.2);
+}
+
+.details .box {
+    width: 50%;
+}
+
+.details .box.complainant {
+    border-right: 1px solid rgba(0, 87, 146, 0.2);
+}
+
+.details .box.report{
+    margin-left: 1em;
+}
+
+.incident-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.container {
+    height: 100vh;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.btns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.evidence {
+    width: 250px;
+    height: 300px;
+    background-color: gray;
+}
+
+
+footer {
+    background-color: var(--secondary-clr);
+    color: var(--bg-clr);
+}
+
+/**TYPOGRAPHY**/
+
+footer > p {
+    margin: 0;
+    padding: .5em 0;
+    text-align: center;
+}
+
+.navbar-brand {
+    font-family: var(--ff-header);
+    color: var(--secondary-clr);
+    
+}
+
+.banner > h2 {
+    font-family: var(--ff-header);
+    color: var(--bg-clr);
+}
+
+.navbar-brand > h2 {
+    margin: 0;
+}
+
+.nav-link,
+h5,
+p {
+    font-family: var(--ff-body);
+}
+
+h5 {
+    color: var(--secondary-clr);
+}
+
+.detail-title {
+    font-weight: 500;
+    color: var(--secondary-clr);
+}
+
+small {
+    cursor: pointer;
+}
+
+small:hover {
+    color: var(--tertiary-clr);
+    transition: 0.2s;
+}
