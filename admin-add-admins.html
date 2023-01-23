@@ -130,12 +130,13 @@
 
         <h5>Add New Admin</h5>
         <form action="">
-            <input type="text" name="admin-name" id="admin-name" placeholder="Admin Name" class="form-control" required>
-            <input type="text" name="position" id="position" placeholder="Position" class="form-control" required>
-            <input type="email" name="email" id="email" placeholder="Email" class="form-control" required>
-            <input type="password" name="password" id="password" placeholder="Password" class="form-control" required>
+            <input type="text" name="admin-firstname" id="new-admin-firstname" placeholder="First Name" class="form-control" required>
+            <input type="text" name="admin-lastname" id="new-admin-lastname" placeholder="Last Name" class="form-control" required>
+            <input type="text" name="position" id="new-admin-position" placeholder="Position" class="form-control" required>
+            <input type="email" name="email" id="new-admin-email" placeholder="Email" class="form-control" required>
+            <input type="password" name="password" id="new-admin-password" placeholder="Password" class="form-control" required>
 
-            <button type="submit" class="btn btn-primary">Create Account</button>
+            <button type="submit" class="btn btn-primary" id="btn">Create Account</button>
         </form>
     </div>
 
@@ -145,13 +146,14 @@
 
         <h5>Edit Admin Info</h5>
         <form action="">
-            <input type="text" name="admin-name" id="admin-name" placeholder="Admin Name" class="form-control" required>
-            <input type="text" name="position" id="position" placeholder="Position" class="form-control" required>
-            <input type="email" name="email" id="email" placeholder="Email" class="form-control" required>
-            <input type="password" name="password" id="password" placeholder="Password" class="form-control" required>
+            <input type="text" name="admin-name" id="edit-admin-firstname" placeholder="Admin Name" class="form-control" required>
+            <input type="text" name="admin-name" id="edit-admin-lastname" placeholder="Admin Name" class="form-control" required>
+            <input type="text" name="position" id="edit-admin-position" placeholder="Position" class="form-control" required>
+            <input type="email" name="email" id="edit-admin-email" placeholder="Email" class="form-control" required>
+            <input type="password" name="password" id="edit-admin-password" placeholder="Password" class="form-control" required>
 
             <button class="btn btn-outline-primary mb-2">Delete</button>
-            <button type="submit" class="btn btn-primary">Edit</button>
+            <button type="submit" class="btn btn-primary" id="btn">Edit</button>
         </form>
     </div>
 
