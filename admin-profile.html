@@ -151,11 +151,12 @@
 
         <h5>Personal Information</h5>
         <form action="">
-            <input type="text" name="fullname" id="full-name" placeholder="Full Name" class="form-control" required>
-            <input type="text" name="address" id="address" placeholder="Address" class="form-control" required>
-            <input type="date" name="birthday" id="birthday" class="form-control" required>
+            <input type="text" name="firstname" id="edit-firstname" placeholder="First Name" class="form-control">
+            <input type="text" name="firstname" id="edit-lastname" placeholder="Last Name" class="form-control" required>
+            <input type="text" name="address" id="edit-address" placeholder="Address" class="form-control" required>
+            <input type="date" name="birthday" id="edit-birthday" class="form-control" required>
 
-            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <button type="submit" class="btn btn-primary" id="btn">Save Changes</button>
         </form>
     </div>
 
@@ -165,10 +166,10 @@
 
         <h5>Account Information</h5>
         <form action="">
-            <input type="number" name="phone" id="phone" placeholder="Phone Number" class="form-control" required>
-            <input type="email" name="email" id="email" placeholder="Email" class="form-control" required>
+            <input type="number" name="phone" id="edit-phone" placeholder="Phone Number" class="form-control" required>
+            <input type="email" name="email" id="edit-email" placeholder="Email" class="form-control" required>
 
-            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <button type="submit" class="btn btn-primary" id="btn">Save Changes</button>
         </form>
     </div>
 
@@ -178,11 +179,11 @@
 
         <h5>Change Password</h5>
         <form action="">
-            <input type="password" name="current-pass" id="current-pass" placeholder="Current Password" class="form-control" required>
-            <input type="password" name="new-pass" id="new-pass" placeholder="New Password" class="form-control" required>
-            <input type="password" name="retype-pass" id="retype-pass" placeholder="Re-type Password" class="form-control" required>
+            <input type="password" name="current-pass" id="current-pass" placeholder="Current Password" class="form-control input" required>
+            <input type="password" name="new-pass" id="new-pass" placeholder="New Password" class="form-control input" required>
+            <input type="password" name="retype-pass" id="retype-pass" placeholder="Re-type Password" class="form-control input" required>
 
-            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <button type="submit" class="btn btn-primary" id="btn">Save Changes</button>
         </form>
     </div>
 
