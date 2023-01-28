@@ -1,0 +1,209 @@
+body {
+    background-color: var(--bg-clr);
+}
+
+.banner {
+    background-image:linear-gradient(
+        rgba(0, 87, 146, 0.6),
+        rgba(0, 87, 146, 0.6)), url("../images/binan-landscape.jpg");
+    width: 100%;
+    height: 120px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-top: .25em solid var(--tertiary-clr);
+    border-bottom: .25em solid var(--tertiary-clr);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar {
+    margin: 0 1em;
+}
+
+.container {
+    height: 100vh;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-around;
+}
+
+.cards .box {
+    width: 45%;
+    background-color: var(--bg-clr);
+    border-radius: .5em;
+    box-shadow: 3px 3px 5px #D6D6D1;
+    margin: 0 1em;
+    padding: 1.5em;
+}
+
+.main-info {
+    text-align: center;
+}
+
+.breakdown {
+    display: flex;
+    justify-content: space-around;
+}
+
+footer {
+    background-color: var(--secondary-clr);
+    color: var(--bg-clr);
+}
+
+footer > p {
+    margin: 0;
+    padding: .5em 0;
+    text-align: center;
+}
+
+.sort-search, 
+select > option {
+    font-family: var(--ff-body);
+}
+
+.sort-search {
+    margin: 2em 0;
+    display: flex;
+    align-items: baseline;
+}
+
+.sort-search > label {
+    margin-right: .5em;
+}
+
+#show {
+    margin-right:1em;
+    border: none;
+    background-color: inherit;
+    padding: .5em;
+}
+
+#search {
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+#search:focus {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.7);
+}
+
+.navbar-brand {
+    font-family: var(--ff-header);
+    color: var(--secondary-clr);
+    
+}
+
+.banner > h2 {
+    font-family: var(--ff-header);
+    color: var(--bg-clr);
+}
+
+.navbar-brand > h2 {
+    margin: 0;
+}
+
+.nav-link,
+h1,
+p {
+    font-family: var(--ff-body);
+}
+
+.title {
+    color: var(--secondary-clr);
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: .5em;
+}
+
+.count {
+    color: var(--tertiary-clr);
+}
+
+.breakdown-detail {
+    margin-bottom: .5em;
+}
+
+.breakdown-detail span {
+    font-weight: 500;
+}
+
+thead {
+    background-color: var(--tertiary-clr);
+    color: #FFFFFF;
+}
+
+@media (min-width:320px) and (max-width:992px) {
+    .sort-search {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .sort-search > label {
+        display: none;
+    }
+
+    .table thead {
+        display: none;
+    }
+
+    .table, .table th, .table tbody, .table tr, .table td{
+        display: block;
+        width: 100%;
+    }
+
+    .table tr {
+        margin-bottom: 1em;
+    }
+
+    .table td, .table th {
+        text-align: right;
+        padding-left: 50%;
+        text-align: right;
+        position: relative;
+    }
+
+    .table td::before,
+    .table th::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 1em;
+        font-size: 1rem;
+        text-align: left;
+    }
+}
+
+@media (max-width: 715px) {
+    .cards {
+        display: block;
+    }
+
+    .cards .box {
+        width: 100%;
+        margin: .75em 0;
+    }
+}
+
+@media (max-width: 700px) {
+    .sort-search {
+        display: block;
+    }
+
+    #show {
+        margin-right:0;
+        padding-right: .25em;
+    }
+
+    #search {
+        width: 100%;
+    }
+}
