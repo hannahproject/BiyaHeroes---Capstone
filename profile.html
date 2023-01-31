@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/popup-modal.css">
 
     <!-- FILEPOND -->
     <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
@@ -92,60 +93,107 @@
                 <h5>Profile Photo</h5>
 
                 <input type="file" class="filepond" id="profile" name="profile">
+
+                <div class="filepond-controllers">
+                    <small id="edit-profile">Edit</small>
+
+                    <div class="hidden-btns">
+                        <small id="save">Save</small>
+                        <small id="cancel">Cancel</small>
+                    </div>
+                </div>
             </div>
 
             <div class="col-md-8">
                 <div class="header">
                     <h5>Personal Information</h5>
-                    <small id="edit">Edit</small>
+                    <small id="edit-personal">Edit</small>
                 </div>
 
                 <div class="profile-item">
-                    <input type="text" name="full-name" id="full-name" placeholder="Full Name" readonly class="form-control">
-                    <small class="form-text">Error Message</small>
+                    <p class="user-info" id="full-name">Hannah Liwanag</p>
                 </div>
 
                 <div class="profile-item">
-                    <input type="text" name="address" id="address" placeholder="Address" readonly class="form-control">
-                    <small class="form-text">Error Message</small>
+                    <p class="user-info" id="address">Binan, Laguna</p>
                 </div>
 
                 <div class="profile-item">
-                    <input type="text" name="birthday" id="birthday" placeholder="Birthday" readonly class="form-control">
-                    <small class="form-text">Error Message</small>
+                    <p class="user-info" id="birthday">March 30 2001</p>
                 </div>
                 
                 <div class="header">
                     <h5>Account Information</h5>
+                    <small id="edit-acc">Edit</small>
                 </div>
 
                 <div class="profile-item">
-                    <input type="number" name="phone-num" id="phone-num" placeholder="Phone Number" readonly class="form-control">
-                    <small class="form-text">Error Message</small>
+                    <p class="user-info" id="phone-num">+639268319487</p>
                 </div>
 
                 <div class="profile-item">
-                    <input type="email" name="email" id="email" placeholder="Email" readonly class="form-control">
-                    <small class="form-text">Error Message</small>
+                    <p class="user-info" id="email">liwanagportfolio@gmail.com</p>
                 </div>
 
-                <div class="profile-item">
-                    <input type="password" name="password" id="password" placeholder="Password" class="form-control" readonly>
-                    <small class="form-text">Error Message</small>
+                <div class="profile-item password-field">
+                    <input type="password" name="password" id="password" value="Password" disabled>
+                    <small id="change-pass-btn">Change Password?</small>
                 </div>
-            
-                <button class="btn btn-outline-success" id="save">Save</button>
-                <button type="reset" class="btn btn-outline-danger" id="cancel">Cancel</button>
+
             </div>
         </div>
     </section>
+
+    <div class="popup-box" id="personal-popup">
+
+        <img src="images/x-lg.svg" alt="" class="close-popup-btn close">
+
+        <h5>Personal Information</h5>
+        <form action="">
+            <input type="text" name="firstname" id="edit-firstname" placeholder="First Name" class="form-control">
+            <input type="text" name="firstname" id="edit-lastname" placeholder="Last Name" class="form-control" required>
+            <input type="text" name="address" id="edit-address" placeholder="Address" class="form-control" required>
+            <input type="date" name="birthday" id="edit-birthday" class="form-control" required>
+
+            <button type="submit" class="btn btn-primary" id="btn">Save Changes</button>
+        </form>
+    </div>
+
+    <div class="popup-box" id="account-popup">
+
+        <img src="images/x-lg.svg" alt="" class="close-popup-btn close">
+
+        <h5>Account Information</h5>
+        <form action="">
+            <input type="number" name="phone" id="edit-phone" placeholder="Phone Number" class="form-control" required>
+            <input type="email" name="email" id="edit-email" placeholder="Email" class="form-control" required>
+
+            <button type="submit" class="btn btn-primary" id="btn">Save Changes</button>
+        </form>
+    </div>
+
+    <div class="popup-box" id="password-popup">
+
+        <img src="images/x-lg.svg" alt="" class="close-popup-btn close">
+
+        <h5>Change Password</h5>
+        <form action="">
+            <input type="password" name="current-pass" id="current-pass" placeholder="Current Password" class="form-control input" required>
+            <input type="password" name="new-pass" id="new-pass" placeholder="New Password" class="form-control input" required>
+            <input type="password" name="retype-pass" id="retype-pass" placeholder="Re-type Password" class="form-control input" required>
+
+            <button type="submit" class="btn btn-primary" id="btn">Save Changes</button>
+        </form>
+    </div>
+
+    <div id="page-mask"></div>
 
     <footer>
         <p>Commuters' Reports Management System</p>
     </footer>
 
+    <script defer src="js/commuter-profile.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
-    <script defer src="js/edit-profile.js"></script>
 </body>
 </html>
