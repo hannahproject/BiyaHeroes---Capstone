@@ -38,6 +38,12 @@ select > option {
     font-family: var(--ff-body);
 }
 
+.table-controllers {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .sort-search {
     margin-bottom: 1.5em;
 }
@@ -77,6 +83,12 @@ select > option {
 }
 
 /**TYPOGRAPHY**/
+
+.table-controllers > p {
+    color: var(--secondary-clr);
+    font-weight: 500;
+    cursor: pointer;
+}
 
 footer > p {
     margin: 0;
