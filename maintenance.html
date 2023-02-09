@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/maintenance.css">
+    <link rel="stylesheet" href="css/popup-modal.css">
+</head>
+<body>
+
+    <header>
+
+        <nav class="navbar navbar-expand-md">
+            <a href="/SA/dashboard" class="navbar-brand"><h2>BiyaHeroes</h2></a>
+
+            <button 
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#toggleMobileMenu"
+            aria-controls="toggleMobileMenu"
+            aria-expanded="false"
+            aria-label="Toggle Navigation">
+
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="toggleMobileMenu">
+                <ul class="navbar-nav ms-auto">
+
+                    <li>
+                        <a class="nav-link" href="/SA/complaints">Complaints</a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link" href="/SA/missing">Missing Items</a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link" href="/SA/TODA">TODA</a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link" href="/SA/drivers">Drivers</a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link" href="/SA/newAdmin">Admins</a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link " href="/SA/logs">Logs</a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link active" href="/SA/maintenance">Maintenance</a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link" href="/SA/profile">Profile</a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link logout" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="banner">
+            <h2>Maintenance</h2>
+        </div>
+    </header>
+
+    <section class="container">
+        <div class="maintainables">
+            
+            <div class="table-header mb-3">
+                <h5>Violation Types</h5>
+
+                <button class="btn btn-outline-primary btn-sm add-btn" id="add-violation">Add New Type</button>
+            </div>
+
+            <table class="table table-hover text-center">
+                <thead>
+                    <tr>
+                        <th>Violation Name</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+    
+                <tbody>
+
+                    <tr>
+                        <td>Violation Name</td>
+                        <td>
+                            <input type="image" src="/images/trash.svg" alt="" class="table-btn" id="delete-btn">
+                        </td>                        
+                    </tr>
+                    <tr>
+                        <td>Violation Name</td>
+                        <td>
+                            <input type="image" src="/images/trash.svg" alt="" class="table-btn" id="delete-btn">
+                        </td>                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="maintainables">
+            <div class="table-header mb-3">
+                <h5>Item Types</h5>
+
+                <button class="btn btn-outline-primary btn-sm add-btn" id="add-item">Add New Type</button>
+            </div>
+
+            <table class="table table-hover text-center">
+                <thead>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+    
+                <tbody>
+                    <tr>
+                        <td>Item Name</td>
+                        <td>
+                            <input type="image" src="/images/trash.svg" alt="" class="table-btn" id="delete-btn">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Item Name</td>
+                        <td>
+                            <input type="image" src="/images/trash.svg" alt="" class="table-btn" id="delete-btn">
+                        </td>                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="maintainables">
+
+            <div class="table-header mb-3">
+                <h5>Fare</h5> 
+                
+                <button class="btn btn-outline-primary btn-sm add-btn" id="update-fare">Update Fare</button>
+            </div>
+            
+            <table class="table table-hover text-center">
+                <thead>
+                    <tr>
+                        <th>Base Fare</th>
+                        <th>Succeeding Fare</th>
+                    </tr>
+                </thead>
+    
+                <tbody>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <div class="popup-box" id="violation-type-popup">
+
+        <img src="images/x-lg.svg" alt="" class="close-popup-btn close">
+
+        <h5>New Violation Type</h5>
+        <form action="">
+            <input type="text" name="violation-type" id="violation-type" placeholder="Add New Violation Type" class="form-control" required>
+
+            <button type="submit" class="btn btn-primary" id="btn">Save Changes</button>
+        </form>
+    </div>
+
+    <div class="popup-box" id="item-type-popup">
+
+        <img src="images/x-lg.svg" alt="" class="close-popup-btn close">
+
+        <h5>New Item Type</h5>
+        <form action="">
+            <input type="text" name="item-type" id="item-type" placeholder="Add New Item Type" class="form-control" required>
+
+            <button type="submit" class="btn btn-primary" id="btn">Save Changes</button>
+        </form>
+    </div>
+
+    <div class="popup-box" id="fare-popup">
+
+        <img src="images/x-lg.svg" alt="" class="close-popup-btn close">
+
+        <h5>Update Fare</h5>
+        <form action="">
+            <input type="number" name="base-fare" id="base-fare" placeholder="Update Base Fare" class="form-control" required>
+            <input type="number" name="succeeding-fare" id="succeeding-fare" placeholder="Update Succeeding Fare" class="form-control" required>
+            <button type="submit" class="btn btn-primary" id="btn">Save Changes</button>
+        </form>
+    </div>
+
+    <div id="page-mask"></div>
+
+    <footer>
+        <p>Commuters' Reports Management System</p>
+    </footer>
+    
+    <script src="js/maintenance.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+</body>
+</html>
