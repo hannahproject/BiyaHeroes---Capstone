@@ -25,9 +25,16 @@ const geoapify = '9a505c840dbb420c94615cc446b4e3fd';
 var map = L.map('map').setView([14.3391, 121.0840], 13);
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    zoom: 13,
+    minZoom: 11,
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
+
+var myIcon = L.icon({
+    iconUrl: 'images/route-mark.svg',
+    iconSize: [12, 12]
+});
 
 var group = L.layerGroup().addTo(map);
 var route = null;
@@ -57,6 +64,7 @@ function onSuccess(pos) {
 
     var coords = [CURRENT_LOCATION.latitude, CURRENT_LOCATION.longitude];
     
+    //PUSH THE COORDINATES TO A MULTIDIMENSIONAL ARRAY
     ARR_CURRENT_LOCS.push(coords);
 
     if(ARR_CURRENT_LOCS.length > 0) {
@@ -90,13 +98,25 @@ function GetCoords() {
         }
     });
 
+    //POSITION A
     firstChild = unique[0];
+
+    //POSITION B
     lastChild = unique.slice(-1);
 
     //DISPLAYS A POLYLINE BASED ON THE COORDINATES INSIDE THE UNIQUE ARRAY
-    polyline = L.polyline(unique, {color: 'red'}).addTo(group);
-    map.addLayer(polyline);
-    map.fitBounds(polyline.getBounds());
+    // polyline = L.polyline(unique, {color: 'red'}).addTo(group);
+    // map.addLayer(polyline);
+    // map.fitBounds(polyline.getBounds());
+
+    if(lastChild !== null) {
+        for (var i = 0; i < unique.length; i++) {
+            var marker = new L.marker([unique[i][0], unique[i][1]], {icon: myIcon}).addTo(group);
+        }
+        var latLngs = [ marker.getLatLng() ];
+        var markerBounds = L.latLngBounds(latLngs);
+        map.fitBounds(markerBounds, {maxZoom: 17});
+    }
 
     DisplayRoute();
 }
@@ -106,18 +126,9 @@ var locations = {};
 function PositionA() {
     FROM = firstChild;
     
+    //STORES POSITION A COORDINATES
     locations['FROM_LatLng'] = FROM;
     ReverseGeocodeFrom();
-}
-
-function PositionB() {
-    TO = CURRENT_LOCATION;
-
-    locations['TO_LatLng'] = TO;
-    ReverseGeocodeTo();
-
-    var message = 'Press Stop button to turn off Geolocation.';
-    SuccessMessage(message);
 }
 
 function ReverseGeocodeFrom() {
@@ -144,11 +155,21 @@ function ReverseGeocodeFrom() {
     }
 }
 
+function PositionB() {
+    TO = CURRENT_LOCATION;
+
+    locations['TO_LatLng'] = TO;
+    ReverseGeocodeTo();
+
+    var message = 'Press Stop button to turn off Geolocation.';
+    SuccessMessage(message);
+}
+
 function ReverseGeocodeTo() {
 
     if('TO_LatLng' in locations) {
         //ADD MARKER B TO MAP
-        var MARKER_B = L.marker([locations.TO_LatLng.latitude, locations.TO_LatLng.longitude]).addTo(group);
+        var MARKER_B = L.marker([locations.TO_LatLng.latitude, locations.TO_LatLng.longitude], {}).addTo(group);
         map.addLayer(MARKER_B);  
 
         var reverse = `https://api.geoapify.com/v1/geocode/reverse?lat=${locations.TO_LatLng.latitude}&lon=${locations.TO_LatLng.longitude}&apiKey=${geoapify}`;
@@ -198,25 +219,29 @@ function DisplayRoute() {
         _FARE = null;
         DISCOUNTED_FARE = null;
     
-        if(dist <= 1050) {
-            fare.innerHTML = BASE_FARE;
-            var off = BASE_FARE * DISCOUNT_RATE;
-            DISCOUNTED_FARE = BASE_FARE - off;
-    
-            discount.innerHTML = Math.ceil(DISCOUNTED_FARE);
-        } else {
-    
-            var METER = 1000;
-    
-            var EXCESS = dist - METER;
-            _FARE = (EXCESS * SUCCEEDING_MTRS) + BASE_FARE;
-    
-            var off = _FARE * DISCOUNT_RATE;
-            DISCOUNTED_FARE = _FARE - off;
-    
-            fare.innerHTML = Math.ceil(_FARE);
-            discount.innerHTML = Math.ceil(DISCOUNTED_FARE);
+        //THE FARE METER WILL ONLY START CALCULATING IF POSITION B HAS BEEN SET
+        if(lastChild !== null) {
+            if(dist <= 1050) {
+                fare.innerHTML = BASE_FARE;
+                var off = BASE_FARE * DISCOUNT_RATE;
+                DISCOUNTED_FARE = BASE_FARE - off;
+        
+                discount.innerHTML = Math.ceil(DISCOUNTED_FARE);
+            } else {
+        
+                var METER = 1000;
+        
+                var EXCESS = dist - METER;
+                _FARE = (EXCESS * SUCCEEDING_MTRS) + BASE_FARE;
+        
+                var off = _FARE * DISCOUNT_RATE;
+                DISCOUNTED_FARE = _FARE - off;
+        
+                fare.innerHTML = Math.ceil(_FARE);
+                discount.innerHTML = Math.ceil(DISCOUNTED_FARE);
+            }
         }
+
     } else {
         console.log('Waiting for Position A to be set');
     }
