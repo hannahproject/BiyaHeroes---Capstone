@@ -17,6 +17,7 @@ CURRENT_LOCATION = null;
 var FROM = null;
 var TO = null;
 var WatchID = null;
+var route = null;
 
 //GEOAPIFY
 const geoapify = '9a505c840dbb420c94615cc446b4e3fd';
@@ -83,6 +84,7 @@ function onError(err) {
 
 var lastChild = null;
 var firstChild = null;
+var nextChild = null;
 
 function GetCoords() {
 
@@ -104,19 +106,24 @@ function GetCoords() {
     //POSITION B
     lastChild = unique.slice(-1);
 
-    //DISPLAYS A POLYLINE BASED ON THE COORDINATES INSIDE THE UNIQUE ARRAY
-    // polyline = L.polyline(unique, {color: 'red'}).addTo(group);
-    // map.addLayer(polyline);
-    // map.fitBounds(polyline.getBounds());
-
-    if(lastChild !== null) {
-        for (var i = 0; i < unique.length; i++) {
-            var marker = new L.marker([unique[i][0], unique[i][1]], {icon: myIcon}).addTo(group);
-        }
-        var latLngs = [ marker.getLatLng() ];
-        var markerBounds = L.latLngBounds(latLngs);
-        map.fitBounds(markerBounds, {maxZoom: 17});
+    //NEXT ELEMENT
+    for (let i = 0; i < unique.length; i++) {
+        nextChild = unique[i-1];
+        // console.log(nextChild[0][1]);
     }
+
+    if(firstChild !== null) {
+        console.log(nextChild);
+    }
+
+    // if(lastChild !== null) {
+    //     for (var i = 0; i < unique.length; i++) {
+    //         var marker = new L.marker([unique[i][0], unique[i][1]], {icon: myIcon}).addTo(group);
+    //     }
+    //     var latLngs = [ marker.getLatLng() ];
+    //     var markerBounds = L.latLngBounds(latLngs);
+    //     map.fitBounds(markerBounds, {maxZoom: 17});
+    // }
 
     DisplayRoute();
 }
@@ -194,9 +201,32 @@ var roundKM = null;
 var _FARE = null;
 var DISCOUNTED_FARE = null;
 
+var line = null;
+
 function DisplayRoute() {
 
     if('FROM_LatLng' in locations) {
+
+        route = L.Routing.control({
+            waypoints: [
+                //POINT A
+                L.latLng(nextChild),
+                //POINT B
+                L.latLng(lastChild[0][0], lastChild[0][1])
+            ],
+            routeWhileDragging: false,
+            addWaypoints: false,
+            draggableWaypoints: false,
+            lineOptions: {
+                styles: [{
+                    color: '#FD5F00', 
+                    opacity: 1, 
+                    weight: 3}]
+             },
+             createMarker: function () {
+                return false;
+             }
+        }).addTo(map);
 
         const dist = geolib.getPreciseDistance(
             {
@@ -252,13 +282,19 @@ function Clear() {
     geolocator.clearWatch(WatchID);
     map.setView([14.3391, 121.0840], 13);
 
+    CURRENT_LOCATION = null;
+    unique = [];
+    nextChild = null;
+    lastChild = [];
+    ARR_CURRENT_LOCS = [];
+
     if(group != null) {
         group.clearLayers();
     }
 
-    CURRENT_LOCATION = null;
-    unique = [];
-    ARR_CURRENT_LOCS = [];
+    if(route != null) {
+        map.removeControl(route);
+    }
 
     dist = null;
     KM = null;

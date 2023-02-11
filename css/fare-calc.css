@@ -2,6 +2,10 @@ body {
     background-color: var(--bg-clr);
 }
 
+.leaflet-routing-container {
+    display: none;
+  }
+
 .banner {
     background-image:linear-gradient(
         rgba(0, 87, 146, 0.6),
