@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fare Meter</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/fare-meter.css">
+</head>
+<body>
+    
+    
+    <header>
+
+        <nav class="navbar navbar-expand-md">
+            <a href="home.html" class="navbar-brand"><h2>BiyaHeroes</h2></a>
+
+            <button 
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#toggleMobileMenu"
+            aria-controls="toggleMobileMenu"
+            aria-expanded="false"
+            aria-label="Toggle Navigation">
+            
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="toggleMobileMenu">
+                <ul class="navbar-nav ms-auto">
+
+                    <li>
+                        <a class="nav-link" href="report-violation.html">Report a Violation</a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link" href="report-missing-item.html">Report Missing Item</a>
+                    </li>
+
+                    <li class="history">
+                        <a class="nav-link" href="history.html">History</a>
+
+                        <ul>
+                            <li><a href="history.html">Violations</a></li>
+                            <li><a href="missing-item-history.html">Missing Item</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a class="nav-link active" href="#">Fare Calculator</a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link" href="profile.html">Profile</a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link logout" href="#">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="banner">
+            <h2>Fare Meter</h2>
+        </div>
+    </header>
+
+    <section class="container">
+        <div class="meter-display mb-3">
+            <div class="meter-display-item meter-display-item-one">
+                <h3>Fare</h3>
+                <div class="counter fare-counter">
+                    <small class="meter-display-label">PHP</small>
+                    <h1 id="fare-counter">0</h1>
+                </div>
+            </div>
+            <hr>
+            <div class="meter-display-item">
+                <h3>Distance</h3>
+                <div class="counter distance-counter">
+                    <small class="meter-display-label">KM</small>
+                    <h1 id="distance-counter">0</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="clr">
+            <small id="clear">Clear Meter</small>
+        </div>
+
+        <div class="meter-breakdown mt-3">
+
+            <div class="user-location mb-3">
+                <div class="user-location-item one">
+                    <div class="user-location-label">
+                        <img src="images/geo-alt.svg" alt=""  class="meter-display-icon">
+                        <p>Point A</p>                        
+                    </div>
+                    <input type="text" name="point-a" id="point-a" placeholder="Press 'Start Trip' to know your location" disabled>
+                </div>
+                <div class="user-location-item">
+                    <div class="user-location-label">
+                        <img src="images/geo-alt.svg" alt="" class="meter-display-icon">
+                        <p>Point B</p>                        
+                    </div>
+                    <input type="text" name="point-b" id="point-b" placeholder="Press 'Start Trip' to know your location" disabled>
+                </div>
+            </div>
+
+            <div class="breakdown-details">
+                <div class="breakdown-label">
+                    <img src="images/hourglass.svg" alt="" class="meter-display-icon">
+                    <p>Time</p>
+                </div>
+
+                <p>00:00</p>
+            </div>
+            <div class="breakdown-details">
+                <div class="breakdown-label">
+                    <img src="images/cash-stack.svg" alt="" class="meter-display-icon">
+                    <p>Base Fare</p>
+                </div>
+
+                <p><span id="base">15</span> pesos</p>
+            </div>
+            <div class="breakdown-details">
+                <div class="breakdown-label">
+                    <img src="images/cash-coin.svg" alt="" class="meter-display-icon">
+                    <p>Succeeding Fare</p>
+                </div>
+
+                <p><span id="succeeding">2</span> pesos</p>
+            </div>
+
+            <hr class="total-hr">
+            <div class="breakdown-details" id="display-total">
+                <div class="total-detail fare">
+                    <p>Total Fare</p>
+                    <p><span id="total">0</span> pesos</p>
+                </div>
+                <div class="total-detail">
+                    <small>Discounted (20%)</small>
+                    <small><span id="discount">0</span> pesos</small>
+                </div>
+            </div>
+            <hr class="total-hr">
+
+            <div class="buttons mt-3">
+                <button class="button" id="start">Start Trip</button>
+                <button class="button" id="stop" disabled>Stop Trip</button>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>Commuters' Reports Management System</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/geolib@3.3.3/lib/index.min.js"></script>
+    <script src="js/fare-meter.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+</body>
+</html>

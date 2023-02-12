@@ -1,0 +1,225 @@
+body {
+    background-color: var(--bg-clr);
+}
+
+.banner {
+    background-image:linear-gradient(
+        rgba(0, 87, 146, 0.6),
+        rgba(0, 87, 146, 0.6)), url("../images/binan-landscape.jpg");
+    width: 100%;
+    height: 120px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-top: .25em solid var(--tertiary-clr);
+    border-bottom: .25em solid var(--tertiary-clr);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar {
+    margin: 0 1em;
+}
+
+.container {
+    /* height: 100vh; */
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+footer {
+    background-color: var(--secondary-clr);
+    color: var(--bg-clr);
+    width: 100%;
+    bottom: 0;
+}
+
+.meter-display {
+    width: 100%;
+    border: 4px solid rgba(200,210,197, 0.4);
+    border-radius: 2em;
+}
+
+.meter-display-icon {
+    width: 14px;
+    margin-right: .5em;
+    filter: invert(23%) sepia(96%) saturate(1074%) hue-rotate(178deg) brightness(95%) contrast(104%);
+}
+
+.meter-display-item {
+    display: flex;
+    padding: 1em 1.5em;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.meter-display-item .counter {
+    display: flex;
+    align-items: last baseline;
+}
+
+hr {
+    margin: 0;
+    color: rgba(200,210,197);
+}
+
+.meter-breakdown {
+    width: 100%;
+}
+
+.user-location {
+    display: flex;
+}
+
+.user-location .user-location-item{
+    width: 50%;
+}
+
+.user-location .user-location-item.one {
+    margin-right: 1em;
+}
+
+.user-location-item .user-location-label {
+    display: flex;
+    align-items: center;
+    margin-bottom: .5em;
+}
+
+.user-location-item > input {
+    width: 100%;
+    border-radius: .75em;
+    padding: .5em 1em;
+    border: 2px solid rgba(200,210,197);
+    outline: none;
+    font-family: var(--ff-body);
+}
+
+
+.breakdown-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.breakdown-details#display-total {
+    display: block;
+}
+
+.total-detail {
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+}
+
+.breakdown-details .breakdown-label {
+    display: flex;
+    align-items: center;
+}
+
+.buttons {
+    display: flex;
+    width: 100%;
+}
+
+.button {
+    width: 50%;
+    border-radius: .75em;
+    padding: .5em 1em;
+    font-family: var(--ff-body);
+    outline: none;
+    border: none;
+
+}
+
+.button#start {
+    margin-right: .75em;
+    background-color: var(--tertiary-clr);
+    color: var(--bg-clr);
+}
+
+.button#stop {
+    background-color: var(--secondary-clr);
+    color: var(--bg-clr);
+}
+
+.total-hr {
+    margin: .5em 0;
+    color: var(--secondary-clr);
+    height: 8px;
+}
+
+.clr {
+    text-align: right;
+}
+
+/* TYPOGRAPHY */
+
+.navbar-brand {
+    font-family: var(--ff-header);
+    color: var(--secondary-clr);
+    
+}
+
+.counter > small,
+.meter-display-item > h3,
+.meter-display-item .counter > h1 {
+    margin: 0;
+    font-family: var(--ff-body);
+}
+
+.breakdown-details .breakdown-label > p,
+.user-location-label > p {
+    margin: 0;
+}
+
+.total-detail.fare > P {
+    font-weight: 600;
+}
+
+.total-detail > small {
+    font-family: var(--ff-body);
+}
+
+.counter > small {
+    margin: 0 1em;
+}
+
+#clear {
+    font-family: var(--ff-body);
+    color: #000000;
+    opacity: 0.3;
+    margin: 0;
+    cursor: pointer;
+}
+
+#clear:hover {
+    color: var(--tertiary-clr);
+    opacity: 1;
+}
+
+.banner > h2 {
+    font-family: var(--ff-header);
+    color: var(--bg-clr);
+}
+
+.nav-link,
+.btn,
+label,
+p {
+    font-family: var(--ff-body);
+}
+
+h5 {
+    color: var(--secondary-clr);
+}
+
+.navbar-brand > h2 {
+    margin: 0;
+}
+
+footer > p {
+    margin: 0;
+    padding: .5em 0;
+    text-align: center;
+}
