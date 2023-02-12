@@ -13,11 +13,6 @@ export function ValidateNum(inputNum) {
         if(parseInt(firstDigit) !== 9) {
             Err(inputNum);
         } else {
-            //IDUDUGTONG YUNG +63 IF NAGSISIMULA SA 9
-            inputNum.innerText = counter;
-          var callingCode = '+63';
-          var concatinatedNum = `${callingCode}${counter}`;
-          inputNum.value = concatinatedNum;
           Success(inputNum);
         }
       }
@@ -30,6 +25,6 @@ function Success(input) {
     input.className = 'form-control success';
   }
   
-function Err(input) {
+  function Err(input) {
     input.className = 'form-control error';  
-}
+  }
