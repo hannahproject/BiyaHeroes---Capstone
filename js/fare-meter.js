@@ -12,6 +12,8 @@ const fare_counter = document.getElementById('fare-counter');
 const distance_counter = document.getElementById('distance-counter');
 const total_fare = document.getElementById('total');
 const discounted = document.getElementById('discount');
+const current_base = document.getElementById('current-base');
+const current_succeeding = document.getElementById('current-succeeding');
 
 //GLOBAL VARIABLES
 geolocator = navigator.geolocation;
@@ -61,6 +63,10 @@ function onError(err) {
     console.log(message);
 }
 
+function between(x, min, max) {
+    return x >= min && x <= max;
+}
+
 function ReverseGeocodeA() {
     var reverse = `https://api.geoapify.com/v1/geocode/reverse?lat=${firstCoords[0]}&lon=${firstCoords[1]}&apiKey=${geoapify}`;
 
@@ -78,6 +84,7 @@ function ReverseGeocodeA() {
 }
 
 function CalculateDistance() {
+
     const dist = geolib.getPreciseDistance(
         {
             latitude: firstCoords[0], 
@@ -94,40 +101,41 @@ function CalculateDistance() {
 
     distance_counter.innerHTML = roundKM;
 
-    const SUCCEEDING_FARE = 2;
-    const BASE_FARE = 15;
+    const SUCCEEDING_FARE = parseInt(current_succeeding.innerText);
+    const BASE_FARE = parseInt(current_base.innerText);
     const DISCOUNT_RATE = 0.2;
 
-    if(roundKM <= 1.1) {
-        _FARE = BASE_FARE;
+    let S = null;
+    let compute_fare = null;
+
+    if(roundKM == 0) {
+        fare_counter.innerHTML = 0;
+    }else if(between(roundKM, 0, 1.2)) {
+        S = (roundKM - 1) * SUCCEEDING_FARE;
+        compute_fare = S + BASE_FARE;
+
+        _FARE = compute_fare;
 
         fare_counter.innerHTML = _FARE;
         off = BASE_FARE * DISCOUNT_RATE;
         DISCOUNTED_FARE = _FARE - off;
-    } else if(roundKM > 1.1 && !(roundKM > 2)) {
-        var SUCEEDING = Math.ceil(KM);
-        console.log(SUCEEDING);
-        _FARE = (SUCEEDING * SUCCEEDING_FARE) + BASE_FARE;
-
-        off = _FARE * DISCOUNT_RATE;
-        DISCOUNTED_FARE = _FARE - off;
-
-        fare_counter.innerHTML = Math.ceil(_FARE);   
-
     } else {
-            var SUCEEDING = Math.ceil(roundKM) - 1;
-            console.log(SUCEEDING);
-            _FARE = (SUCEEDING * SUCCEEDING_FARE) + BASE_FARE;
+        //MINUS 1KM NOT IMPLEMENTED
+        S = Math.ceil(roundKM) * SUCCEEDING_FARE;
+        console.log(S);
+        compute_fare = S + BASE_FARE;
 
-            off = _FARE * DISCOUNT_RATE;
-            DISCOUNTED_FARE = _FARE - off;
+        console.log(compute_fare);
+        _FARE = Math.ceil(compute_fare);
 
-            fare_counter.innerHTML = Math.ceil(_FARE);        
+        fare_counter.innerHTML = _FARE;
+        off = BASE_FARE * DISCOUNT_RATE;
+        DISCOUNTED_FARE = _FARE - off;
     }
 }
 
 function StopTrip() {
-    total_fare.innerHTML = Math.ceil(_FARE);
+    total_fare.innerHTML = _FARE;
     discounted.innerHTML = DISCOUNTED_FARE;
 
     var reverse = `https://api.geoapify.com/v1/geocode/reverse?lat=${CURRENT_LOCATION.latitude}&lon=${CURRENT_LOCATION.longitude}&apiKey=${geoapify}`;
@@ -166,6 +174,7 @@ function ClearMeter() {
     DISCOUNTED_FARE = null;
     off = null;
 }
+
 start.addEventListener('click', Geolocate);
 stop.addEventListener('click', StopTrip);
 clear.addEventListener('click', ClearMeter);
