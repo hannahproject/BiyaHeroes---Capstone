@@ -110,33 +110,26 @@ function CalculateDistance() {
 
     if(roundKM == 0) {
         fare_counter.innerHTML = 0;
-    }else if(between(roundKM, 0, 1.2)) {
-        S = (roundKM - 1) * SUCCEEDING_FARE;
-        compute_fare = S + BASE_FARE;
-
-        _FARE = compute_fare;
-
+    } else if(between(roundKM, 0.05, 1)) {
+        _FARE = BASE_FARE;
         fare_counter.innerHTML = _FARE;
         off = BASE_FARE * DISCOUNT_RATE;
         DISCOUNTED_FARE = _FARE - off;
     } else {
-        //MINUS 1KM NOT IMPLEMENTED
-        S = Math.ceil(roundKM) * SUCCEEDING_FARE;
-        console.log(S);
+        S = (roundKM - 1) * SUCCEEDING_FARE;
         compute_fare = S + BASE_FARE;
 
-        console.log(compute_fare);
-        _FARE = Math.ceil(compute_fare);
+        _FARE = Math.round(100* compute_fare) / 100;
 
-        fare_counter.innerHTML = _FARE;
+        fare_counter.innerHTML = Math.round(100* _FARE) / 100;
         off = BASE_FARE * DISCOUNT_RATE;
         DISCOUNTED_FARE = _FARE - off;
     }
 }
 
 function StopTrip() {
-    total_fare.innerHTML = _FARE;
-    discounted.innerHTML = DISCOUNTED_FARE;
+    total_fare.innerHTML = Math.round(100* _FARE) / 100;
+    discounted.innerHTML = Math.round(100* DISCOUNTED_FARE) / 100;
 
     var reverse = `https://api.geoapify.com/v1/geocode/reverse?lat=${CURRENT_LOCATION.latitude}&lon=${CURRENT_LOCATION.longitude}&apiKey=${geoapify}`;
 
