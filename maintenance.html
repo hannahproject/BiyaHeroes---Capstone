@@ -150,22 +150,30 @@
         <div class="maintainables">
 
             <div class="table-header mb-3">
-                <h5>Fare</h5> 
+                <h5>Fare Guide</h5> 
                 
-                <button class="btn btn-outline-primary btn-sm add-btn" id="update-fare">Update Fare</button>
+                <button class="btn btn-outline-primary btn-sm add-btn" id="update-fare">Update Fare Guide</button>
             </div>
             
             <table class="table table-hover text-center">
                 <thead>
                     <tr>
-                        <th>Base Fare</th>
-                        <th>Succeeding Fare</th>
+                        <th>Route</th>
+                        <th>Regular Fare</th>
+                        <th>Discounted</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
     
                 <tbody>
-                    <td>00.00</td>
-                    <td>00.00</td>
+                    <tr>
+                        <td>Route 1 to Route 2</td>
+                        <td>00.00</td> 
+                        <td>00.00</td>    
+                        <td>
+                            <input type="image" src="/images/trash.svg" alt="" class="table-btn" id="delete-btn">
+                        </td>                     
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -199,10 +207,78 @@
 
         <img src="images/x-lg.svg" alt="" class="close-popup-btn close">
 
-        <h5>Update Fare</h5>
+        <h5>Update Fare Guide</h5>
         <form action="">
-            <input type="number" name="base-fare" id="base-fare" placeholder="Update Base Fare" class="form-control" required>
-            <input type="number" name="succeeding-fare" id="succeeding-fare" placeholder="Update Succeeding Fare" class="form-control" required>
+            <select name="toda" id="toda" class="form-control">
+                <option value="">Toda 1</option>
+                <option value="">Toda 2</option>
+                <option value="">Toda 3</option>
+            </select>
+            <div id="tbl-scroll">
+                <table class="text-center">
+                    <thead>
+                        <tr>
+                            <th>Route</th>
+                            <th>Fare</th>
+                            <th>Disc.</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Route 1 to Route 2</td>
+                            <td>00.00</td> 
+                            <td>00.00</td>    
+                        </tr>
+
+                        <tr>
+                            <td>Route 1 to Route 2</td>
+                            <td>00.00</td> 
+                            <td>00.00</td>    
+                        </tr>
+
+                        <tr>
+                            <td>Route 1 to Route 2</td>
+                            <td>00.00</td> 
+                            <td>00.00</td>    
+                        </tr>
+
+                        <tr>
+                            <td>Route 1 to Route 2</td>
+                            <td>00.00</td> 
+                            <td>00.00</td>    
+                        </tr>
+
+                        <tr>
+                            <td>Route 1 to Route 2</td>
+                            <td>00.00</td> 
+                            <td>00.00</td>    
+                        </tr>
+
+                        <tr>
+                            <td>Route 1 to Route 2</td>
+                            <td>00.00</td> 
+                            <td>00.00</td>    
+                        </tr>
+
+                        <tr>
+                            <td>Route 1 to Route 2</td>
+                            <td>00.00</td> 
+                            <td>00.00</td>    
+                        </tr>
+
+                        <tr>
+                            <td>Route 1 to Route 2</td>
+                            <td>00.00</td> 
+                            <td>00.00</td>    
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <input type="text" name="point-a" id="point-a" placeholder="Starting Point" class="form-control" required>
+            <input type="text" name="point-b" id="point-b" placeholder="Drop-off Point" class="form-control" required>
+            <input type="number" name="reg-fare" id="reg-fare" placeholder="Regular Fare" class="form-control" required>
+            <input type="number" name="succeeding-fare" id="succeding-fare" placeholder="Succeeding Fare" class="form-control" required>
             <button type="submit" class="btn btn-primary" id="btn">Save Changes</button>
         </form>
     </div>

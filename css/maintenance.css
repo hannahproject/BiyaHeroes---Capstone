@@ -32,6 +32,24 @@ body {
     margin: 3em 0;
 }
 
+#tbl-scroll {
+    margin: 1em 0;
+    height: 150px;
+    overflow-y: scroll;
+}
+
+#tbl-scroll > table {
+    width: 100%;
+}
+
+#tbl-scroll > table > thead > tr > th {
+    font-size: 12px;
+}
+
+#tbl-scroll > table > tbody > tr > td {
+    font-size: 12px;
+}
+
 .table-header {
     height: fit-content;
     display: flex;
